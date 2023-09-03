@@ -41,13 +41,13 @@
             color: #fff;
             cursor: pointer;
             width: 300px;
-            margin-bottom: 10px; /* Add margin to separate buttons */
+            margin-bottom: 10px;
         }
 
-            #buttons-container div:hover {
-                background-color: #555; /* Change background color on hover */
-                width: 300px;
-            }
+        #buttons-container div:hover {
+            background-color: #555;
+            width: 300px;
+        }
 
         #restart-button {
             display: none;
