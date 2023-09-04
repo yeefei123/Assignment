@@ -2,12 +2,13 @@
 <html>
 <head>
     <title>T-Rex Game</title>
+    <link href='https://fonts.googleapis.com/css?family=Nova Flat' rel='stylesheet'>
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #f7f7f7;
-            font-family: sans-serif;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         #game-container {
@@ -36,17 +37,19 @@
 
         #buttons-container div {
             padding: 10px 20px;
-            background-color: #333;
-            top: 50%;
+            background-image: url("wooden.png"); /* Wood texture background */
+            background-size: cover;
             color: #fff;
+            height:30px;
             cursor: pointer;
             width: 300px;
             margin-bottom: 10px;
+            text-align: center;
+            font-weight: bold;
         }
 
         #buttons-container div:hover {
-            background-color: #555;
-            width: 300px;
+            color:#0024da;
         }
 
         #restart-button {
@@ -59,18 +62,22 @@
             background-color: #333;
             color: #fff;
             cursor: pointer;
+            
         }
 
         #words {
             color: #000000;
-            font-size: 2rem;
+            font-size: 1.6rem;
+            font-family: 'Nova Flat';
+            text-align: center;
             position: absolute;
-            top: 150px;
+            top: 100px;
             left: 50%;
             transform: translate(-50%, -50%);
         }
 
         #buttons-container {
+            margin-top:50px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -80,6 +87,41 @@
             left: 50%;
             transform: translate(-50%, -50%); /* Center horizontally and vertically */
         }
+
+                #level-info {
+            width: 100%;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 600px;
+            background-color: #f7f7f7;
+            position: absolute;
+            overflow: hidden;
+            background: lightblue url("background.jpg") no-repeat fixed center;
+        }
+
+        #level-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #words {
+            color: #000000;
+            font-size: 1.6rem;
+            font-family: 'Nova Flat';
+            text-align: center;
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 <body>
@@ -87,15 +129,21 @@
         <div id="trex">
             <img src="running.gif" />
         </div>
+        <div id="words">
+            <h1>T-REX Game</h1>
+            <b>Press space bar to start the game</b>
+        </div>
+        <div id="level-info">
+            <div id="level-display"></div>
+        </div>
         <div id="restart-button">Restart</div>
-        <div id="words">Press space bar to start the game</div>
+
         <div id="buttons-container">
             <div id="tutorials-button">Tutorials</div>
             <div id="video-button">Learning Videos</div>
             <div id="exit-button">Exit</div>
         </div>
     </div>
-
     <script>
         const trex = document.getElementById('trex');
         const gameContainer = document.getElementById('game-container');
@@ -168,7 +216,6 @@
                             gameContainer.removeChild(obstacle);
                         } else {
                             obstacle.style.left = (currentPosition - 5) + 'px';
-
                             if (
                                 currentPosition < 150 && // Adjust this value to determine when to jump
                                 currentPosition + 20 > 100 && // Adjust this value for obstacle width
@@ -239,8 +286,35 @@
                 }
             }
         });
+        // Function to parse the query parameters from the URL
+        function getQueryParams() {
+            const queryParams = {};
+            const queryString = window.location.search.substring(1);
+            const queryStrings = queryString.split('&');
+            for (const queryString of queryStrings) {
+                const keyValue = queryString.split('=');
+                if (keyValue.length === 2) {
+                    const key = decodeURIComponent(keyValue[0]);
+                    const value = decodeURIComponent(keyValue[1]);
+                    queryParams[key] = value;
+                }
+            }
+            return queryParams;
+        }
 
-        // Start the initial obstacle creation interval
+        const levelInfo = document.getElementById('level-display');
+
+        // Get the level number from the URL query parameter
+        const queryParams = getQueryParams();
+        const levelNumber = queryParams['stage'];
+
+        if (levelNumber) {
+            // Display the level number
+            levelInfo.textContent = `Level ${levelNumber}`;
+        } else {
+            // Redirect to level selection if no level is specified
+            window.location.href = 'level.aspx';
+        }
         obstacleCreationInterval = setInterval(createObstacle, 2000); // Adjust timing as needed
     </script>
 </body>
