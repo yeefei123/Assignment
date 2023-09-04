@@ -110,20 +110,11 @@
                 box-shadow: 0 0 0 .15vw skyblue;
             }
 
-            
-
-
-        
-        
     </style>
-    
-    </script>
 </head>
 
 <body>
-    
-       
-   
+
         <div class="container2">
             <div class="addvideoform">
                 <div class="formtitle">Add Video</div>
@@ -167,7 +158,6 @@
                 </form>
             </div>
         </div>
-    </div>
     <form id="form1" runat="server">
         <div>
         </div>
