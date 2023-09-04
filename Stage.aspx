@@ -1,6 +1,13 @@
 ﻿</html>
 
 <!DOCTYPE html>
+<script runat="server">
+
+    Protected Sub Page_Load(sender As Object, e As EventArgs)
+
+    End Sub
+</script>
+
 <html>
 <head>
     <title>T-Rex Game - Stage Selection</title>
@@ -15,10 +22,6 @@
         #stage-selection-container {
             width: 100%;
             top: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
         #game-container {
@@ -41,9 +44,9 @@
             font-weight: bold;
             font-size: 1.5rem;
             position: relative; /* Added for positioning the number */
-            display: flex; /* Use flexbox to align text and number */
-            justify-content: flex-start; /* Align content to the start */
-            top:200px;
+            display: inline-block;
+            top: 200px;
+            margin-right: 50px;
         }
 
         .level-number {
@@ -73,9 +76,10 @@
             <div class="stage-button" onclick="selectStage(1)">
                 Level 1
             </div>
-            <div class="stage-button" onclick="selectStage(2)">
+            <div class="stage-button" onclick="selectStage(1)">
                 Level 2
             </div>
+
         </div>
     </div>
     <script>

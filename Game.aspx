@@ -8,7 +8,7 @@
             margin: 0;
             padding: 0;
             background-color: #f7f7f7;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         #game-container {
@@ -40,7 +40,7 @@
             background-image: url("wooden.png"); /* Wood texture background */
             background-size: cover;
             color: #fff;
-            height:30px;
+            height: 30px;
             cursor: pointer;
             width: 300px;
             margin-bottom: 10px;
@@ -48,9 +48,9 @@
             font-weight: bold;
         }
 
-        #buttons-container div:hover {
-            color:#0024da;
-        }
+            #buttons-container div:hover {
+                color: #0024da;
+            }
 
         #restart-button {
             display: none;
@@ -62,7 +62,6 @@
             background-color: #333;
             color: #fff;
             cursor: pointer;
-            
         }
 
         #words {
@@ -77,7 +76,7 @@
         }
 
         #buttons-container {
-            margin-top:50px;
+            margin-top: 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -88,7 +87,7 @@
             transform: translate(-50%, -50%); /* Center horizontally and vertically */
         }
 
-                #level-info {
+        #level-info {
             width: 100%;
             top: 100px;
             display: flex;
@@ -313,7 +312,7 @@
             levelInfo.textContent = `Level ${levelNumber}`;
         } else {
             // Redirect to level selection if no level is specified
-            window.location.href = 'level.aspx';
+            window.location.href = 'Stage.aspx';
         }
         obstacleCreationInterval = setInterval(createObstacle, 2000); // Adjust timing as needed
     </script>
