@@ -23,12 +23,12 @@
             border-radius: 5px;
             margin: 5px 0;
             transition: background-color 0.3s;
-            margin-top:30px;
+            margin-top: 30px;
         }
 
-        .level-button:hover {
-            background-color: #555;
-        }
+            .level-button:hover {
+                background-color: #555;
+            }
 
         body {
             margin: 0;
@@ -47,12 +47,12 @@
         }
 
         #buttons-container {
-            margin-top:50px;
+            margin-top: 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width:300px;
-            text-align:center;
+            width: 300px;
+            text-align: center;
             gap: 15px; /* Increased the gap between buttons */
             position: absolute;
             top: 200px; /* Center vertically */
@@ -65,34 +65,27 @@
             padding: 0;
         }
 
-        #level-list li {
-            margin-bottom: 10px;
-        }
+            #level-list li {
+                margin-bottom: 10px;
+            }
     </style>
 </head>
 <body>
+
     <div id="game-container">
         <div id="words">
             <h1>T-REX Game</h1>
             <b>Admin Management System</b>
         </div>
         <div id="buttons-container">
+            <div class="level-button" onclick="viewLevel()">View</div>
             <div class="level-button" onclick="addLevel()">Add</div>
             <div class="level-button" onclick="modifyLevel()">Modify</div>
             <div class="level-button" onclick="deleteLevel()">Delete</div>
         </div>
         <ul id="level-list"></ul>
     </div>
+   
 </body>
-<script>
-    function addLevel() {
-        const levelNumber = prompt('Enter level number:');
-        if (levelNumber) {
-            const levelList = document.getElementById('level-list');
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `<a href="game.aspx?level=${levelNumber}">Level ${levelNumber}</a>`;
-            levelList.appendChild(listItem);
-        }
-    }
-</script>
+
 </html>

@@ -1,6 +1,5 @@
-﻿</html>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<html>
 <script runat="server">
 
     Protected Sub Page_Load(sender As Object, e As EventArgs)
@@ -8,7 +7,7 @@
     End Sub
 </script>
 
-<html>
+
 <head>
     <title>T-Rex Game - Stage Selection</title>
     <style>
