@@ -54,6 +54,7 @@
             <h1>Tutorial Video</h1>
             <div class="col" id="videoContainer"></div>
         </div>
+        
     </form>
 </body>
 </html>

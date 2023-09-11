@@ -195,40 +195,6 @@
                 <button class="level-button" type="button" onclick="showAdminModal()">Admin</button>
                 <button class="level-button" type="button" onclick="showMemberModal()">Member</button>
             </div>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [userTable]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [userTable] WHERE [userID] = @original_userID AND (([userName] = @original_userName) OR ([userName] IS NULL AND @original_userName IS NULL)) AND (([email] = @original_email) OR ([email] IS NULL AND @original_email IS NULL)) AND (([password] = @original_password) OR ([password] IS NULL AND @original_password IS NULL)) AND (([gender] = @original_gender) OR ([gender] IS NULL AND @original_gender IS NULL)) AND (([age] = @original_age) OR ([age] IS NULL AND @original_age IS NULL)) AND (([progressID] = @original_progressID) OR ([progressID] IS NULL AND @original_progressID IS NULL))" InsertCommand="INSERT INTO [userTable] ([userName], [email], [password], [gender], [age], [progressID]) VALUES (@userName, @email, @password, @gender, @age, @progressID)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [userTable] SET [userName] = @userName, [email] = @email, [password] = @password, [gender] = @gender, [age] = @age, [progressID] = @progressID WHERE [userID] = @original_userID AND (([userName] = @original_userName) OR ([userName] IS NULL AND @original_userName IS NULL)) AND (([email] = @original_email) OR ([email] IS NULL AND @original_email IS NULL)) AND (([password] = @original_password) OR ([password] IS NULL AND @original_password IS NULL)) AND (([gender] = @original_gender) OR ([gender] IS NULL AND @original_gender IS NULL)) AND (([age] = @original_age) OR ([age] IS NULL AND @original_age IS NULL)) AND (([progressID] = @original_progressID) OR ([progressID] IS NULL AND @original_progressID IS NULL))">
-                <DeleteParameters>
-                    <asp:Parameter Name="original_userID" Type="Int32" />
-                    <asp:Parameter Name="original_userName" Type="String" />
-                    <asp:Parameter Name="original_email" Type="String" />
-                    <asp:Parameter Name="original_password" Type="String" />
-                    <asp:Parameter Name="original_gender" Type="String" />
-                    <asp:Parameter Name="original_age" Type="Int32" />
-                    <asp:Parameter Name="original_progressID" Type="Int32" />
-                </DeleteParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="userName" Type="String" />
-                    <asp:Parameter Name="email" Type="String" />
-                    <asp:Parameter Name="password" Type="String" />
-                    <asp:Parameter Name="gender" Type="String" />
-                    <asp:Parameter Name="age" Type="Int32" />
-                    <asp:Parameter Name="progressID" Type="Int32" />
-                </InsertParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="userName" Type="String" />
-                    <asp:Parameter Name="email" Type="String" />
-                    <asp:Parameter Name="password" Type="String" />
-                    <asp:Parameter Name="gender" Type="String" />
-                    <asp:Parameter Name="age" Type="Int32" />
-                    <asp:Parameter Name="progressID" Type="Int32" />
-                    <asp:Parameter Name="original_userID" Type="Int32" />
-                    <asp:Parameter Name="original_userName" Type="String" />
-                    <asp:Parameter Name="original_email" Type="String" />
-                    <asp:Parameter Name="original_password" Type="String" />
-                    <asp:Parameter Name="original_gender" Type="String" />
-                    <asp:Parameter Name="original_age" Type="Int32" />
-                    <asp:Parameter Name="original_progressID" Type="Int32" />
-                </UpdateParameters>
-            </asp:SqlDataSource>
 
         </div>
 
