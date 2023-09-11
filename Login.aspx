@@ -333,6 +333,17 @@
             }
         }
 
+        function showAdminModal() {
+            var modal = document.getElementById('id01');
+            modal.style.display = "block";
+        }
+
+        function showMemberModal() {
+            var modal = document.getElementById('id02');
+            modal.style.display = "block";
+        }
+
+
         function closeModal(modalId) {
             var modal = document.getElementById(modalId);
             modal.style.display = "none";

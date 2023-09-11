@@ -1,10 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Stage.aspx.cs" Inherits="Assignment.Stage" %>
+
+<!DOCTYPE html>
 <html>
 <script runat="server">
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs)
-
-    End Sub
 </script>
 
 
@@ -38,7 +37,8 @@
             background-size: cover;
             color: #fff;
             cursor: pointer;
-            height: 100px;
+            height: 150px;
+            width:130px;
             margin-bottom: 10px;
             font-weight: bold;
             font-size: 1.5rem;
@@ -71,13 +71,7 @@
             <h1>T-REX</h1>
             <b>Press space bar to start the game</b>
         </div>
-        <div id="stage-selection-container">
-            <div class="stage-button" onclick="selectStage(1)">
-                Level 1
-            </div>
-            <div class="stage-button" onclick="selectStage(1)">
-                Level 2
-            </div>
+         <div id="stage_selection_container" runat="server">
 
         </div>
     </div>
