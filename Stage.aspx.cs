@@ -44,6 +44,8 @@ namespace Assignment
                     stageButton.Attributes.Add("onclick", $"selectStage({stageId})");
                     stageButton.InnerHtml = $"{stageId}";
 
+                    // Add the stage button to the container
+                    stage_selection_container.Controls.Add(stageButton);
                 }
 
                 reader.Close();

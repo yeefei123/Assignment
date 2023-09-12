@@ -26,7 +26,7 @@ namespace Assignment
             if (!IsPostBack)
             {
                 LoadVideos();
-            }
+            } 
         }
 
 
@@ -122,6 +122,6 @@ namespace Assignment
         {
             public string codeName { get; set; }
             public string URL { get; set; }
-        }
+        } 
     }
 }
