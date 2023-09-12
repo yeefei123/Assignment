@@ -17,7 +17,7 @@
 
         #game-container {
             width: 100%;
-            height: 600px;
+            height: 100%;
             background-color: #f7f7f7;
             position: absolute;
             overflow: hidden;
