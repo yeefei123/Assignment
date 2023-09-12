@@ -12,6 +12,7 @@
             padding: 0;
             background-color: #f7f7f7;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
         }
 
         #game-container {
@@ -20,7 +21,8 @@
             background-color: #f7f7f7;
             position: absolute;
             overflow: hidden;
-            background: lightblue url("background.jpg") no-repeat fixed center;
+            background: lightblue url("jungle.jpg") no-repeat fixed center;
+            background-size: cover;
         }
 
         #buttons-container {

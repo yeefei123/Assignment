@@ -24,11 +24,12 @@
 
         #game-container {
             width: 100%;
-            height: 600px;
+            height: 100%;
             background-color: #f7f7f7;
             position: absolute;
             overflow: hidden;
-            background: lightblue url("background.jpg") no-repeat fixed center;
+            background: lightblue url("jungle.jpg") no-repeat fixed center;
+            background-size: cover;
         }
 
         .stage-button {

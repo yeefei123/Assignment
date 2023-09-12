@@ -59,8 +59,9 @@ namespace Assignment
 
         protected void selectStage(int selectedStageId)
         {
-            Response.Redirect($"User_video_page.aspx?selectedStage={selectedStageId}");
+            Response.Redirect($"Game.aspx?selectedStage={selectedStageId}");
         }
+
 
 
     }
