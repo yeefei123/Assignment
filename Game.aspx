@@ -11,15 +11,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        #game-container {
-            width: 100%;
-            height: 600px;
-            background-color: #f7f7f7;
-            position: absolute;
-            overflow: hidden;
-            background: lightblue url("background.jpg") no-repeat fixed center;
-        }
-
         #trex {
             width: auto;
             height: auto;
@@ -102,7 +93,8 @@
             background-color: #f7f7f7;
             position: absolute;
             overflow: hidden;
-            background: lightblue url("background.jpg") no-repeat fixed center;
+            background: lightblue url("jungle.jpg") no-repeat fixed center;
+            background-size: cover;
         }
 
         #level-display {
@@ -315,6 +307,9 @@
             window.location.href = 'Stage.aspx';
         }
         obstacleCreationInterval = setInterval(createObstacle, 2000); // Adjust timing as needed
-    </script>
+    </script>ming as needed
+
+        </script>
+    </form>
 </body>
 </html>
