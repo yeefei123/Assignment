@@ -16,11 +16,26 @@ namespace Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 LoadStages();
-
+                if (Session["userName"] != null)
+                {
+                    showName.Text = Session["userName"].ToString();
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
             }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+
+
         }
 
         private void LoadStages()

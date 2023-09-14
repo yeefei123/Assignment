@@ -77,6 +77,9 @@
 
              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [stageTable]"></asp:SqlDataSource>
 
+             <br />
+             <asp:Label ID="showName" runat="server" Text="uname"></asp:Label>
+
         </div>
     </div>
     <script>

@@ -198,6 +198,62 @@
                 <button class="level-button" type="button" onclick="showMemberModal()">Member</button>
             </div>
 
+            <asp:Label ID="showName" runat="server" Text="showName"></asp:Label>
+
+            <br />
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [userTable] WHERE [userID] = @original_userID AND (([userName] = @original_userName) OR ([userName] IS NULL AND @original_userName IS NULL)) AND (([email] = @original_email) OR ([email] IS NULL AND @original_email IS NULL)) AND (([password] = @original_password) OR ([password] IS NULL AND @original_password IS NULL)) AND (([gender] = @original_gender) OR ([gender] IS NULL AND @original_gender IS NULL)) AND (([age] = @original_age) OR ([age] IS NULL AND @original_age IS NULL)) AND (([userType] = @original_userType) OR ([userType] IS NULL AND @original_userType IS NULL)) AND (([progressID] = @original_progressID) OR ([progressID] IS NULL AND @original_progressID IS NULL))" InsertCommand="INSERT INTO [userTable] ([userName], [email], [password], [gender], [age], [userType], [progressID]) VALUES (@userName, @email, @password, @gender, @age, @userType, @progressID)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [userTable]" UpdateCommand="UPDATE [userTable] SET [userName] = @userName, [email] = @email, [password] = @password, [gender] = @gender, [age] = @age, [userType] = @userType, [progressID] = @progressID WHERE [userID] = @original_userID AND (([userName] = @original_userName) OR ([userName] IS NULL AND @original_userName IS NULL)) AND (([email] = @original_email) OR ([email] IS NULL AND @original_email IS NULL)) AND (([password] = @original_password) OR ([password] IS NULL AND @original_password IS NULL)) AND (([gender] = @original_gender) OR ([gender] IS NULL AND @original_gender IS NULL)) AND (([age] = @original_age) OR ([age] IS NULL AND @original_age IS NULL)) AND (([userType] = @original_userType) OR ([userType] IS NULL AND @original_userType IS NULL)) AND (([progressID] = @original_progressID) OR ([progressID] IS NULL AND @original_progressID IS NULL))">
+                <DeleteParameters>
+                    <asp:Parameter Name="original_userID" Type="Int32" />
+                    <asp:Parameter Name="original_userName" Type="String" />
+                    <asp:Parameter Name="original_email" Type="String" />
+                    <asp:Parameter Name="original_password" Type="String" />
+                    <asp:Parameter Name="original_gender" Type="String" />
+                    <asp:Parameter Name="original_age" Type="Int32" />
+                    <asp:Parameter Name="original_userType" Type="String" />
+                    <asp:Parameter Name="original_progressID" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="userName" Type="String" />
+                    <asp:Parameter Name="email" Type="String" />
+                    <asp:Parameter Name="password" Type="String" />
+                    <asp:Parameter Name="gender" Type="String" />
+                    <asp:Parameter Name="age" Type="Int32" />
+                    <asp:Parameter Name="userType" Type="String" />
+                    <asp:Parameter Name="progressID" Type="Int32" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="userName" Type="String" />
+                    <asp:Parameter Name="email" Type="String" />
+                    <asp:Parameter Name="password" Type="String" />
+                    <asp:Parameter Name="gender" Type="String" />
+                    <asp:Parameter Name="age" Type="Int32" />
+                    <asp:Parameter Name="userType" Type="String" />
+                    <asp:Parameter Name="progressID" Type="Int32" />
+                    <asp:Parameter Name="original_userID" Type="Int32" />
+                    <asp:Parameter Name="original_userName" Type="String" />
+                    <asp:Parameter Name="original_email" Type="String" />
+                    <asp:Parameter Name="original_password" Type="String" />
+                    <asp:Parameter Name="original_gender" Type="String" />
+                    <asp:Parameter Name="original_age" Type="Int32" />
+                    <asp:Parameter Name="original_userType" Type="String" />
+                    <asp:Parameter Name="original_progressID" Type="Int32" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+            <br />
+            <asp:DetailsView ID="DetailsView1" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="userID" DataSourceID="SqlDataSource1" Height="50px" Width="125px">
+                <Fields>
+                    <asp:BoundField DataField="userID" HeaderText="userID" InsertVisible="False" ReadOnly="True" SortExpression="userID" />
+                    <asp:BoundField DataField="userName" HeaderText="userName" SortExpression="userName" />
+                    <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
+                    <asp:BoundField DataField="password" HeaderText="password" SortExpression="password" />
+                    <asp:BoundField DataField="gender" HeaderText="gender" SortExpression="gender" />
+                    <asp:BoundField DataField="age" HeaderText="age" SortExpression="age" />
+                    <asp:BoundField DataField="userType" HeaderText="userType" SortExpression="userType" />
+                    <asp:BoundField DataField="progressID" HeaderText="progressID" SortExpression="progressID" />
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True" />
+                </Fields>
+            </asp:DetailsView>
+
         </div>
 
         <div id="id01" class="modal" style="background-color: #f1f1f1; display: none;">
@@ -256,7 +312,8 @@
         <div id="id03" class="modal" style="background-color: #f1f1f1;">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <h1>Member Registration</h1>
+                <asp:Label ID="userType" runat="server" ForeColor="Red">Member</asp:Label>
+                <asp:Label ID="Label7" runat="server" ForeColor="Red">Registration Page</asp:Label>
             </div>
             <div class="container">
                 <asp:Label ID="Label1" runat="server" Text="Name:"></asp:Label>
@@ -273,7 +330,6 @@
                 <br />
                 <asp:Label ID="Label5" runat="server" Text="Age:"></asp:Label>
                 <asp:TextBox ID="txtAge" runat="server"></asp:TextBox>
-
                 <asp:Label ID="Label6" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                 <br />
                 <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="RegisterButton_Click" />
