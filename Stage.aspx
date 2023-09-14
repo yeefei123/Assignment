@@ -67,12 +67,15 @@
     </style>
 </head>
 <body>
+    <form id="form1" runat="server">
     <div id="game-container">
         <div id="words">
             <h1>T-REX</h1>
             <b>Press space bar to start the game</b>
         </div>
          <div id="stage_selection_container" runat="server">
+
+             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [stageTable]"></asp:SqlDataSource>
 
         </div>
     </div>
@@ -83,5 +86,6 @@
             window.location.href = `Game.aspx?stage=${selectedStage}`;
         }
     </script>
+    </form>
 </body>
 </html>
