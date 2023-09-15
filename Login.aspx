@@ -239,20 +239,6 @@
                     <asp:Parameter Name="original_progressID" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-            <br />
-            <asp:DetailsView ID="DetailsView1" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="userID" DataSourceID="SqlDataSource1" Height="50px" Width="125px">
-                <Fields>
-                    <asp:BoundField DataField="userID" HeaderText="userID" InsertVisible="False" ReadOnly="True" SortExpression="userID" />
-                    <asp:BoundField DataField="userName" HeaderText="userName" SortExpression="userName" />
-                    <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
-                    <asp:BoundField DataField="password" HeaderText="password" SortExpression="password" />
-                    <asp:BoundField DataField="gender" HeaderText="gender" SortExpression="gender" />
-                    <asp:BoundField DataField="age" HeaderText="age" SortExpression="age" />
-                    <asp:BoundField DataField="userType" HeaderText="userType" SortExpression="userType" />
-                    <asp:BoundField DataField="progressID" HeaderText="progressID" SortExpression="progressID" />
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True" />
-                </Fields>
-            </asp:DetailsView>
 
         </div>
 
@@ -263,14 +249,14 @@
 
             <div class="container">
                 <label for="adminname"><b>AdminID</b></label>
-                <input type="text" id="adminname" placeholder="Enter admin name" name="adminname" />
+                <asp:TextBox ID="aname" runat="server"></asp:TextBox>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" id="psw" placeholder="Enter Password" name="psw" />
+                <asp:TextBox ID="apsw" runat="server"></asp:TextBox>
 
-                <label id="errMsg" style="display: none; color: red;">Wrong adminID and password!</label>
+                <asp:Label ID="errMsg" runat="server" Visible="false" ForeColor="Red"></asp:Label>
 
-                <button type="button" onclick="checkAdminCredentials()">Login</button>
+                <asp:Button type="button" ID="adminlogin" runat="server" Text="Login" OnClick="AdminButton_Click" />
 
                 <label>
                     <input type="checkbox" checked="checked" name="remember" />
@@ -282,6 +268,7 @@
                 <button type="button" onclick="closeModal('id01')" class="cancelbtn">Cancel</button>
                 <span class="psw"><a href="#">Forgot password?</a></span>
                 <br />
+                <span class="psw"><a href="#" onclick="window.location.href='adminRegistration.aspx'";>Not a member?</a></span>
             </div>
         </div>
 
@@ -337,7 +324,7 @@
 
 
             <div class="container">
-                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
             </div>
         </div>
 
@@ -371,17 +358,6 @@
         function closeModal(modalId) {
             var modal = document.getElementById(modalId);
             modal.style.display = "none";
-        }
-
-        function checkAdminCredentials() {
-            var adminID = document.querySelector('#id01 [name=adminname]').value;
-            var password = document.querySelector('#id01 [name=psw]').value;
-
-            if (adminID === "admin123" && password === "8888") {
-                window.location.href = "Admin.aspx";
-            } else {
-                document.getElementById('errMsg').style.display = 'block';
-            }
         }
 
 

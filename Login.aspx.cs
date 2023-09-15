@@ -84,13 +84,14 @@ namespace Assignment
                         Session["userName"] = name;
 
 
-                        if (type == "Admin")
-                        {
-                            Response.Redirect("Admin.aspx");
-                        }
-                        else if (type == "Member")
+                        if (type == "Member")
                         {
                             Response.Redirect("Stage.aspx");
+                        }
+                        else
+                        {
+                            errMsg.Visible = true;
+                            errMsg.Text = "Invalid username or password. Please try again.";
                         }
                     }
                     else
@@ -104,6 +105,65 @@ namespace Assignment
             {
                 error.Visible = true;
                 error.Text = "An error occurred. Please try again later.";
+                Console.WriteLine("Error: " + ex.ToString());
+            }
+        }
+        protected void AdminButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(aname.Text) || string.IsNullOrEmpty(apsw.Text))
+                {
+                    errMsg.Visible = true;
+                    errMsg.Text = "Please enter both adminname and password.";
+                    return;
+                }
+
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM userTable WHERE userName = @userName AND password = @password", con);
+                    cmd.Parameters.AddWithValue("@userName", aname.Text);
+                    cmd.Parameters.AddWithValue("@password", apsw.Text);
+
+                    int userCount = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (userCount > 0)
+                    {
+                        SqlCommand cmdType = new SqlCommand("select userName, userType from userTable where userName=@userName", con);
+                        cmdType.Parameters.AddWithValue("@userName", aname.Text);
+
+                        SqlDataReader dr = cmdType.ExecuteReader();
+                        string type = "";
+                        string name = "";
+                        while (dr.Read())
+                        {
+                            type = dr["userType"].ToString().Trim();
+                            name = dr["userName"].ToString().Trim();
+                        }
+                        Session["userName"] = name;
+                        if (type == "Admin")
+                        {
+                            Response.Redirect("Admin.aspx");
+                        }
+                        else
+                        {
+                            errMsg.Visible = true;
+                            errMsg.Text = "Invalid username or password. Please try again.";
+                        }
+                    }
+                    else
+                    {
+                        errMsg.Visible = true;
+                        errMsg.Text = "Invalid username or password. Please try again.";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                errMsg.Visible = true;
+                errMsg.Text = "An error occurred. Please try again later.";
                 Console.WriteLine("Error: " + ex.ToString());
             }
         }

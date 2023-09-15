@@ -206,8 +206,6 @@
                 </div>
             </div>
             <button type="button" id="restart-button">Restart</button>
-
-
         </div>
     </form>
 

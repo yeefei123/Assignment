@@ -66,7 +66,7 @@ namespace Assignment
                 reader.Close();
                 con.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Handle exceptions
             }
