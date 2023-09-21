@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -22,7 +23,7 @@ namespace Assignment
         {
             try
             {
-                if (string.IsNullOrEmpty(codename.Text) || string.IsNullOrEmpty(url.Text))
+                if (string.IsNullOrEmpty(codename.Text))
                 {
                     error.Visible = true;
                     error.Text = "Please fill in all the fields before proceed.";
@@ -31,10 +32,9 @@ namespace Assignment
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
                 con.Open();
-                string stageQuery = "INSERT INTO stageTable (codeName, URL) VALUES (@codeName, @url); SELECT SCOPE_IDENTITY()";
+                string stageQuery = "INSERT INTO stageTable (codeName) VALUES (@codeName); SELECT SCOPE_IDENTITY()";
                 SqlCommand stageCmd = new SqlCommand(stageQuery, con);
                 stageCmd.Parameters.AddWithValue("@codeName", codename.Text);
-                stageCmd.Parameters.AddWithValue("@url", url.Text);
                 int stageId = Convert.ToInt32(stageCmd.ExecuteScalar());
                 Session["stageId"] = stageId;
 
@@ -48,8 +48,48 @@ namespace Assignment
                 assessmentCmd.Parameters.AddWithValue("@option3", txtBox3.Text);
                 assessmentCmd.Parameters.AddWithValue("@option4", txtBox4.Text);
                 assessmentCmd.ExecuteNonQuery();
-                        
-                    
+
+                string url = urltextbox.Text;
+                if (string.IsNullOrEmpty(videotitle.Text) )
+                {
+                    if (url.Contains("youtube.com"))
+                    {
+                        string ytFormattedUrl = GetYouTubeID(url);
+
+                        if (!CheckDuplicate(ytFormattedUrl))
+                        {
+                            string video = "insert into videoTable (title,description,url,stageId) values (@videotitle, @description, @url,@stageid)";
+                            SqlCommand cmd1 = new SqlCommand(video, con);
+                            {
+                                cmd1.Parameters.AddWithValue("@stageId", stageId);
+                                cmd1.Parameters.AddWithValue("@url", ytFormattedUrl);
+                                cmd1.Parameters.AddWithValue("@videotitle", videotitle.Text);
+                                cmd1.Parameters.AddWithValue("@description", description.Value);
+                                cmd1.ExecuteNonQuery();
+                                Label4.Visible = true;
+                                Label4.Text = "Added!";
+
+
+                            }
+
+                        }
+                        else
+                        {
+                            Label4.Visible = true;
+                            Label4.Text = "This video already exists in our database!";
+
+                        }
+                    }
+                    else
+                    {
+                        Label4.Visible = true;
+                        Label4.Text = "This URL is invalid!";
+
+
+                    }
+                    Label4.Visible = true;
+                    Label4.Text = "Please fill in the blanks!";
+                }
                 con.Close();
             }
             catch (Exception)
@@ -60,5 +100,55 @@ namespace Assignment
             }
         }
 
+
+        //Add Video 
+        private string GetYouTubeID(string youTubeUrl)
+        {
+            //RegEx to Find YouTube ID
+            Match regexMatch = Regex.Match(youTubeUrl, "^[^v]+v=(.{11}).*",
+                               RegexOptions.IgnoreCase);
+            if (regexMatch.Success)
+            {
+                return "https://www.youtube.com/v/" + regexMatch.Groups[1].Value +
+                       "&hl=en&fs=1";
+
+            }
+            return youTubeUrl;
+        }
+
+        public bool CheckDuplicate(string youTubeUrl)
+        {
+            bool exists = false;
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+            SqlCommand cmd = new SqlCommand(String.Format("select * from videoTable where url='{0}'", youTubeUrl), con);
+
+            using (con)
+            {
+                con.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                exists = (dr.HasRows) ? true : false;
+            }
+
+            return exists;
+        }
+
+        protected void Error1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(videotitle.Text))
+            {
+                Label4.Text = "Please fill in all the fields before proceeding.";
+            }
+            else
+            {
+                Label4.Text = ""; // Clear the error message if the text box is not empty
+            }
+        }
+
+
     }
 }
+
+
+      
+

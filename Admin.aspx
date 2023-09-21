@@ -105,19 +105,28 @@
             background-color: #f44336;
         }
 
-        .imgcontainer {
+        
+
+        .videocontainer {
             text-align: center;
             margin: 24px 0 12px 0;
             position: relative;
+            padding-bottom:10%;
         }
 
         .container {
-            padding: 16px;
+            padding: 8px;
         }
 
         span.psw {
             float: right;
             padding-top: 16px;
+        }
+
+        .addvideolabel{
+            float:right;
+            
+            margin-left:60%;
         }
 
         .modal {
@@ -129,7 +138,22 @@
             top: 50%;
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
+            padding-top: 5px;
+            padding-bottom:9px;
+        }
+
+        .videomodal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            width: 300px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            
+            padding-bottom:3%;
+            
         }
 
         .modal-content {
@@ -140,6 +164,7 @@
             max-height: 500px;
             overflow-y: auto;
             padding: 20px;
+
         }
 
 
@@ -345,7 +370,10 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
 
+
             <div id="id01" class="modal" style="background-color: #f1f1f1; display: none; width: 400px; height: 500px;">
+                <br />
+                <asp:Label ID="Label1" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                 <div class="imgcontainer">
                     <h1>Add Stage Details</h1>
                     <span onclick="closeModal('id01')" class="close" title="Close Modal">&times;</span>
@@ -354,13 +382,14 @@
                     <label for="codename"><b>CodeName</b></label>
                     <asp:TextBox ID="codename" runat="server"></asp:TextBox>
 
-                    <label for="video"><b>Video URL</b></label>
-                    <asp:TextBox ID="url" runat="server"></asp:TextBox>
-
                     <label for="note"><b>Note</b></label>
                     <asp:TextBox ID="note" runat="server"></asp:TextBox>
 
-                    <span class="psw"><a href="#" onclick="showAddAssessmentModal()">Add Assessment</a></span>
+                        <span class="psw"><a href="#" onclick="showAddAssessmentModal()">Add Assessment</a></span>
+                        <br />
+                        <span class="addvideolabel"><a href="#" onclick="showAddVideoModel()">Add Video</a></span>
+                  
+                    
                     <asp:Label ID="error" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                     <br />
 
@@ -413,11 +442,75 @@
                     <button type="button" onclick="closeModal('id02')" class="cancelbtn">Cancel</button>
                 </div>
             </div>
-        </div>
+
+            <!-- Add video -->
+            <div id="id04" class="videomodal" style="background-color: #f1f1f1; width: 600px; height: 500px; overflow: auto;">
+                    <div class="imgcontainer">
+                        <h1>Add Video Details</h1>
+                        <span onclick="closeModal('id04')" class="close" title="Close Modal">&times;</span>
+                    </div>
+
+                    <div class="container">
+                        <label for="assessment"><b>Video Title:</b></label>
+                        <asp:TextBox ID="videotitle" runat="server"></asp:TextBox>
+
+                    </div>
+                    <div class="container">
+                        <label for="testname"><b>Video Details</b></label>
+                        <br />
+
+                        <label for="title"><b>URL</b></label>
+                        <asp:TextBox ID="urltextbox" runat="server"></asp:TextBox>
+
+                        <label for="title"><b>Descriptions</b></label><br />
+                         <textarea id="description" cols="70" name="S1" rows="2" runat="server"></textarea>
+                    </div>
+
+
+                    <div class="container">
+                       <asp:Button ID="error1" runat="server" OnClick="Error1_Click" Text="Save" />
+                        <button type="button" id="close1" onclick="closeAssessment2()">Confirm</button>
+                        <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
+
+                    </div>
+                    <div class="container">
+                        <button type="button" onclick="closeModal('id04')" class="cancelbtn">Cancel</button>
+                    </div>
+                </div>
+            
+                       
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [videoTable] WHERE [vidId] = @original_vidId AND (([title] = @original_title) OR ([title] IS NULL AND @original_title IS NULL)) AND (([description] = @original_description) OR ([description] IS NULL AND @original_description IS NULL)) AND (([url] = @original_url) OR ([url] IS NULL AND @original_url IS NULL)) AND (([stageId] = @original_stageId) OR ([stageId] IS NULL AND @original_stageId IS NULL))" InsertCommand="INSERT INTO [videoTable] ([title], [description], [url], [stageId]) VALUES (@title, @description, @url, @stageId)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [videoTable]" UpdateCommand="UPDATE [videoTable] SET [title] = @title, [description] = @description, [url] = @url, [stageId] = @stageId WHERE [vidId] = @original_vidId AND (([title] = @original_title) OR ([title] IS NULL AND @original_title IS NULL)) AND (([description] = @original_description) OR ([description] IS NULL AND @original_description IS NULL)) AND (([url] = @original_url) OR ([url] IS NULL AND @original_url IS NULL)) AND (([stageId] = @original_stageId) OR ([stageId] IS NULL AND @original_stageId IS NULL))">
+                <DeleteParameters>
+                    <asp:Parameter Name="original_vidId" Type="Int32" />
+                    <asp:Parameter Name="original_title" Type="String" />
+                    <asp:Parameter Name="original_description" Type="String" />
+                    <asp:Parameter Name="original_url" Type="String" />
+                    <asp:Parameter Name="original_stageId" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="title" Type="String" />
+                    <asp:Parameter Name="description" Type="String" />
+                    <asp:Parameter Name="url" Type="String" />
+                    <asp:Parameter Name="stageId" Type="Int32" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="title" Type="String" />
+                    <asp:Parameter Name="description" Type="String" />
+                    <asp:Parameter Name="url" Type="String" />
+                    <asp:Parameter Name="stageId" Type="Int32" />
+                    <asp:Parameter Name="original_vidId" Type="Int32" />
+                    <asp:Parameter Name="original_title" Type="String" />
+                    <asp:Parameter Name="original_description" Type="String" />
+                    <asp:Parameter Name="original_url" Type="String" />
+                    <asp:Parameter Name="original_stageId" Type="Int32" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+                    </div>   
     </form>
     <script>
         var modal1 = document.getElementById('id01');
         var modal2 = document.getElementById('id02');
+        var model4 = document.getElementById('id04');
 
         function showAdd() {
             modal1.style.display = "block";
@@ -434,8 +527,16 @@
         }
 
         function closeAssessment() {
-            var modal2 = document.getElementById('id02');
-            modal2.style.display = "none";
+            var modal2 = document.getElementById("id02");
+
+                
+                modal2.style.display = "none";
+        }
+
+        function closeAssessment2() {
+            var modal4 = document.getElementById("id04");   1
+                modal4.style.display = "none";
+
         }
 
 
@@ -509,6 +610,16 @@
                 questionPages[questionPages.length - 1].remove();
             }
         }
+
+
+        //Add video
+
+        function showAddVideoModel() {
+            var modal4 = document.getElementById('id04');
+            modal4.style.display = "block";
+        }
+
+        
 
     </script>
 </body>
