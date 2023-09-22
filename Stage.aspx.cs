@@ -48,7 +48,7 @@ namespace Assignment
                 while (reader.Read())
                 {
                     int stageId = Convert.ToInt32(reader["stageId"]);
-
+                    Session["stageId"] = stageId;
                     // Create a new stage button
                     System.Web.UI.HtmlControls.HtmlGenericControl stageButton = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
                     stageButton.Attributes.Add("class", "stage-button");

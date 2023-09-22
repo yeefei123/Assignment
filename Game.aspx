@@ -158,6 +158,7 @@
             <div id="buttons-container">
                 <div id="tutorials-button">Tutorials</div>
                 <div id="video-button" onclick="window.location.href='User_video_page.aspx'">Learning Videos</div>
+                <div id="assessment-button" onclick="window.location.href='assessment.aspx'">Assessment</div>
                 <div id="exit-button" onclick="window.location.href='Login.aspx'">Exit</div>
 
             </div>

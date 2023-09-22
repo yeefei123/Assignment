@@ -40,6 +40,7 @@ namespace Assignment
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 {
                     con.Open();
+                    Session["stageId"] = stageId;
                     string query = "SELECT codeName FROM stageTable WHERE stageId = @stageId";
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@stageId", stageId);
@@ -61,9 +62,6 @@ namespace Assignment
                 
             }
         }
-
-
-
 
     }
 }
