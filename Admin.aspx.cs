@@ -50,7 +50,13 @@ namespace Assignment
                 assessmentCmd.ExecuteNonQuery();
 
                 string url = urltextbox.Text;
-                if (string.IsNullOrEmpty(videotitle.Text) )
+
+                if (string.IsNullOrEmpty(videotitle.Text))
+                {
+                    Label4.Visible = true;
+                    Label4.Text = "Please fill in the blanks!";
+                }
+                else
                 {
                     if (url.Contains("youtube.com"))
                     {
@@ -58,7 +64,7 @@ namespace Assignment
 
                         if (!CheckDuplicate(ytFormattedUrl))
                         {
-                            string video = "insert into videoTable (title,description,url,stageId) values (@videotitle, @description, @url,@stageid)";
+                            string video = "insert into videoTable (title,description,url,stageId) values (@videotitle, @description, @url,@stageId)";
                             SqlCommand cmd1 = new SqlCommand(video, con);
                             {
                                 cmd1.Parameters.AddWithValue("@stageId", stageId);
@@ -85,12 +91,9 @@ namespace Assignment
                         Label4.Visible = true;
                         Label4.Text = "This URL is invalid!";
 
-
                     }
-                    Label4.Visible = true;
-                    Label4.Text = "Please fill in the blanks!";
+                    con.Close();
                 }
-                con.Close();
             }
             catch (Exception)
             {
@@ -111,10 +114,10 @@ namespace Assignment
             {
                 return "https://www.youtube.com/v/" + regexMatch.Groups[1].Value +
                        "&hl=en&fs=1";
-
             }
             return youTubeUrl;
         }
+
 
         public bool CheckDuplicate(string youTubeUrl)
         {
@@ -132,19 +135,6 @@ namespace Assignment
 
             return exists;
         }
-
-        protected void Error1_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(videotitle.Text))
-            {
-                Label4.Text = "Please fill in all the fields before proceeding.";
-            }
-            else
-            {
-                Label4.Text = ""; // Clear the error message if the text box is not empty
-            }
-        }
-
 
     }
 }

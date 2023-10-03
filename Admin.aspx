@@ -468,7 +468,6 @@
 
 
                     <div class="container">
-                       <asp:Button ID="error1" runat="server" OnClick="Error1_Click" Text="Save" />
                         <button type="button" id="close1" onclick="closeAssessment2()">Confirm</button>
                         <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
 
