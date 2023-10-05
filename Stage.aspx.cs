@@ -33,11 +33,7 @@ namespace Assignment
             {
                 Response.Redirect("Login.aspx");
             }
-
-
-
         }
-
         private void LoadStages()
         {
             try

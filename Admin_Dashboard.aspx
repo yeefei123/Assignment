@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Assignment.Admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin_Dashboard.aspx.cs" Inherits="Assignment.Admin" %>
 
 <!DOCTYPE html>
 
@@ -104,8 +104,6 @@
             padding: 10px 18px;
             background-color: #f44336;
         }
-
-        
 
         .videocontainer {
             text-align: center;
@@ -251,14 +249,13 @@
             <div id="words">
                 <h1>T-REX Game</h1>
                 <b>Admin Management System</b>
+                <h3><asp:Label ID="admin_uname" runat="server" Text="[uname]"></asp:Label></h3>
             </div>
             <div id="buttons-container">
                 <button class="level-button" type="button" onclick="">View</button>
                 <button class="level-button" type="button" onclick="showAdd()">Add</button>
                 <button class="level-button" type="button" onclick="">Modify</button>
                 <button class="level-button" type="button" onclick="showDelete()">Delete</button>
-
-
             </div>
 
             <div id="id03" class="modal" style="background-color: #f1f1f1; display: none; width: 400px; height: 500px;">
@@ -612,7 +609,6 @@
 
 
         //Add video
-
         function showAddVideoModel() {
             var modal4 = document.getElementById('id04');
             modal4.style.display = "block";
