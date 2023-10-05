@@ -21,6 +21,15 @@ namespace Assignment
                     DataTable userData = FetchUserDataFromDatabase();
                     userGridView.DataSource = userData;
                     userGridView.DataBind();
+
+                    if (Session["userName"] != null)
+                    {
+                        Response.Write("Great");
+                    }
+                    else
+                    {
+                        Response.Redirect("Login.aspx");
+                    }
                 }
             }
         }

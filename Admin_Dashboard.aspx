@@ -252,7 +252,7 @@
                 <h3><asp:Label ID="admin_uname" runat="server" Text="[uname]"></asp:Label></h3>
             </div>
             <div id="buttons-container">
-                <button class="level-button" type="button" onclick="">View</button>
+                <button class="level-button" type="button" onclick="view()">View</button>
                 <button class="level-button" type="button" onclick="showAdd()">Add</button>
                 <button class="level-button" type="button" onclick="">Modify</button>
                 <button class="level-button" type="button" onclick="showDelete()">Delete</button>
@@ -397,6 +397,20 @@
                     </div>
                 </div>
             </div>
+
+            <!--view button here-->
+            <div id="view_function" class="modal" style="background-color: #f1f1f1; width: 600px; height: 500px; overflow: auto;">
+                <div class="imgcontainer">
+                    <span onclick="closeModal('view_function')" class="close" title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                    <a href="admin_ViewAllUser.aspx"><button type="button">View all Users</button></a>
+                </div>
+                <div class="container">
+                    <a href="admin_ViewAllStage.aspx"><button type="button">View all Stages</button></a>
+                </div>
+            </div>
+
             <div id="id02" class="modal" style="background-color: #f1f1f1; width: 600px; height: 500px; overflow: auto;">
                 <div class="imgcontainer">
                     <h1>Add assessment Details</h1>
@@ -507,9 +521,14 @@
         var modal1 = document.getElementById('id01');
         var modal2 = document.getElementById('id02');
         var model4 = document.getElementById('id04');
+        var view_modal = document.getElementById('view_function');
 
         function showAdd() {
             modal1.style.display = "block";
+        } 
+
+        function view() {
+            view_modal.style.display = "block";
         }
 
         function closeModal(modalId) {
