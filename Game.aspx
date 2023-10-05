@@ -248,8 +248,6 @@
             }
         }
 
-
-
         // Define an array to keep track of all obstacle intervals
         const obstacleIntervals = [];
         let obstacleCreationInterval; // Added variable to control obstacle creation interval
@@ -288,7 +286,7 @@
                             gameContainer.removeChild(obstacle);
                         } else {
                             obstacle.style.left = (currentPosition - 5) + 'px';
-                            if (
+                            if ( // collision detection condition
                                 currentPosition < 150 && // Adjust this value to determine when to jump
                                 currentPosition + 20 > 100 && // Adjust this value for obstacle width
                                 parseFloat(trex.style.bottom) < 20
@@ -497,7 +495,7 @@
         }
 
         alphabetCreationInterval = setInterval(createRandomAlphabet, 2500);
-        obstacleCreationInterval = setInterval(createObstacle, 2000);
+        obstacleCreationInterval = setInterval(createObstacle, 3000);
     </script>
 </body>
 </html>
