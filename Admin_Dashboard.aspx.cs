@@ -147,6 +147,13 @@ namespace Assignment
             return exists;
         }
 
+        protected void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Request.Cookies.Clear();
+
+            Response.Redirect("login.aspx");
+        }
     }
 }
 

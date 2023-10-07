@@ -189,7 +189,6 @@
     <Content Include="Site.Master" />
     <Content Include="Stage.aspx" />
     <Content Include="assessment.aspx" />
-    <Content Include="User_video_page.aspx" />
     <Content Include="admin_ViewAllUser.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -286,13 +285,6 @@
     </Compile>
     <Compile Include="assessment.aspx.designer.cs">
       <DependentUpon>assessment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User_video_page.aspx.cs">
-      <DependentUpon>User_video_page.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User_video_page.aspx.designer.cs">
-      <DependentUpon>User_video_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin_ViewAllUser.aspx.cs">
       <DependentUpon>admin_ViewAllUser.aspx</DependentUpon>
