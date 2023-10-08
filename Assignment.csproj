@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin.aspx" />
+    <Content Include="AdminEditVideo.aspx" />
     <Content Include="adminRegistration.aspx" />
     <Content Include="Admin_video_page.aspx" />
     <Content Include="App_Data\Database1.mdf" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminEditVideo.aspx.cs">
+      <DependentUpon>AdminEditVideo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminEditVideo.aspx.designer.cs">
+      <DependentUpon>AdminEditVideo.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminRegistration.aspx.cs">
       <DependentUpon>adminRegistration.aspx</DependentUpon>
