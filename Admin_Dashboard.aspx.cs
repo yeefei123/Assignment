@@ -16,7 +16,21 @@ namespace Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["userName"] != null)
+                {
+                    admin_uname.Text = "Welcome! " + Session["userName"].ToString();
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
         protected void SubmitButton_Click(object sender, EventArgs e)
@@ -74,8 +88,6 @@ namespace Assignment
                                 cmd1.ExecuteNonQuery();
                                 Label4.Visible = true;
                                 Label4.Text = "Added!";
-
-
                             }
 
                         }
@@ -83,7 +95,6 @@ namespace Assignment
                         {
                             Label4.Visible = true;
                             Label4.Text = "This video already exists in our database!";
-
                         }
                     }
                     else
@@ -136,6 +147,13 @@ namespace Assignment
             return exists;
         }
 
+        protected void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Request.Cookies.Clear();
+
+            Response.Redirect("login.aspx");
+        }
     }
 }
 

@@ -144,7 +144,7 @@ namespace Assignment
                         Session["userName"] = name;
                         if (type == "Admin")
                         {
-                            Response.Redirect("Admin.aspx");
+                            Response.Redirect("Admin_Dashboard.aspx");
                         }
                         else
                         {

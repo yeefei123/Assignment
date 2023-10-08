@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -97,16 +100,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="About.aspx" />
-    <Content Include="Admin.aspx" />
-    <Content Include="AdminEditVideo.aspx" />
+    <Content Include="Admin_Dashboard.aspx" />
     <Content Include="adminRegistration.aspx" />
     <Content Include="Admin_video_page.aspx" />
+    <Content Include="admin_ViewAllStage.aspx" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
@@ -192,19 +189,19 @@
     <Content Include="Site.Master" />
     <Content Include="Stage.aspx" />
     <Content Include="assessment.aspx" />
-    <Content Include="User_video_page.aspx" />
+    <Content Include="admin_ViewAllUser.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.aspx.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
+    <Compile Include="Admin_Dashboard.aspx.cs">
+      <DependentUpon>Admin_Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin.aspx.designer.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
+    <Compile Include="Admin_Dashboard.aspx.designer.cs">
+      <DependentUpon>Admin_Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminEditVideo.aspx.cs">
       <DependentUpon>AdminEditVideo.aspx</DependentUpon>
@@ -227,14 +224,14 @@
     <Compile Include="Admin_video_page.aspx.designer.cs">
       <DependentUpon>Admin_video_page.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="admin_ViewAllStage.aspx.cs">
+      <DependentUpon>admin_ViewAllStage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="admin_ViewAllStage.aspx.designer.cs">
+      <DependentUpon>admin_ViewAllStage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -296,12 +293,12 @@
     <Compile Include="assessment.aspx.designer.cs">
       <DependentUpon>assessment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User_video_page.aspx.cs">
-      <DependentUpon>User_video_page.aspx</DependentUpon>
+    <Compile Include="admin_ViewAllUser.aspx.cs">
+      <DependentUpon>admin_ViewAllUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User_video_page.aspx.designer.cs">
-      <DependentUpon>User_video_page.aspx</DependentUpon>
+    <Compile Include="admin_ViewAllUser.aspx.designer.cs">
+      <DependentUpon>admin_ViewAllUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

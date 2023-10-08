@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Assignment.Admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin_Dashboard.aspx.cs" Inherits="Assignment.Admin" %>
 
 <!DOCTYPE html>
 
@@ -50,9 +50,9 @@
             margin-top: 30px;
         }
 
-            .level-button:hover {
-                background-color: #555;
-            }
+        .level-button:hover {
+            background-color: #555;
+        }
 
         #words {
             color: #000000;
@@ -84,9 +84,9 @@
             width: 100%;
         }
 
-            #SubmitButton:hover {
-                opacity: 0.8;
-            }
+        #SubmitButton:hover {
+            opacity: 0.8;
+        }
 
         #Button1 {
             background-color: #fefefe;
@@ -105,17 +105,22 @@
             background-color: #f44336;
         }
 
-        
-
         .videocontainer {
             text-align: center;
             margin: 24px 0 12px 0;
             position: relative;
-            padding-bottom:10%;
+            padding-bottom: 10%;
         }
 
         .container {
             padding: 8px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
         }
 
         span.psw {
@@ -123,10 +128,9 @@
             padding-top: 16px;
         }
 
-        .addvideolabel{
-            float:right;
-            
-            margin-left:60%;
+        .addvideolabel {
+            float: right;
+            margin-left: 60%;
         }
 
         .modal {
@@ -139,7 +143,7 @@
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.4);
             padding-top: 5px;
-            padding-bottom:9px;
+            padding-bottom: 9px;
         }
 
         .videomodal {
@@ -151,9 +155,7 @@
             top: 50%;
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.4);
-            
-            padding-bottom:3%;
-            
+            padding-bottom: 3%;
         }
 
         .modal-content {
@@ -164,7 +166,6 @@
             max-height: 500px;
             overflow-y: auto;
             padding: 20px;
-
         }
 
 
@@ -251,14 +252,15 @@
             <div id="words">
                 <h1>T-REX Game</h1>
                 <b>Admin Management System</b>
+                <h3>
+                    <asp:Label ID="admin_uname" runat="server" Text="[uname]"></asp:Label></h3>
             </div>
             <div id="buttons-container">
-                <button class="level-button" type="button" onclick="">View</button>
+                <button class="level-button" type="button" onclick="view()">View</button>
                 <button class="level-button" type="button" onclick="showAdd()">Add</button>
                 <button class="level-button" type="button" onclick="">Modify</button>
                 <button class="level-button" type="button" onclick="showDelete()">Delete</button>
-
-
+                <asp:Button type="button" class="cancelbtn" ID="logoutBtn" runat="server" OnClick="logoutBtn_Click" Text="Log Out" />
             </div>
 
             <div id="id03" class="modal" style="background-color: #f1f1f1; display: none; width: 400px; height: 500px;">
@@ -385,11 +387,11 @@
                     <label for="note"><b>Note</b></label>
                     <asp:TextBox ID="note" runat="server"></asp:TextBox>
 
-                        <span class="psw"><a href="#" onclick="showAddAssessmentModal()">Add Assessment</a></span>
-                        <br />
-                        <span class="addvideolabel"><a href="#" onclick="showAddVideoModel()">Add Video</a></span>
-                  
-                    
+                    <span class="psw"><a href="#" onclick="showAddAssessmentModal()">Add Assessment</a></span>
+                    <br />
+                    <span class="addvideolabel"><a href="#" onclick="showAddVideoModel()">Add Video</a></span>
+
+
                     <asp:Label ID="error" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                     <br />
 
@@ -400,6 +402,28 @@
                     </div>
                 </div>
             </div>
+
+            <!--view button here-->
+            <div id="view_function" class="modal" style="background-color: #f1f1f1; width: 20%; height: 30%; overflow: auto;">
+                <div class="imgcontainer">
+                    <span onclick="closeModal('view_function')" class="close" title="Close Modal">&times;</span>
+                </div>
+
+                <div class="container">
+                    <div class="center">
+                        <a href="admin_ViewAllUser.aspx">
+                            <button type="button">View all Users</button></a>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="center">
+                        <a href="admin_ViewAllStage.aspx">
+                            <button type="button">View all Stages</button></a>
+                    </div>
+                </div>
+            </div>
+            <!--end of view modal-->
+
             <div id="id02" class="modal" style="background-color: #f1f1f1; width: 600px; height: 500px; overflow: auto;">
                 <div class="imgcontainer">
                     <h1>Add assessment Details</h1>
@@ -445,39 +469,39 @@
 
             <!-- Add video -->
             <div id="id04" class="videomodal" style="background-color: #f1f1f1; width: 600px; height: 500px; overflow: auto;">
-                    <div class="imgcontainer">
-                        <h1>Add Video Details</h1>
-                        <span onclick="closeModal('id04')" class="close" title="Close Modal">&times;</span>
-                    </div>
-
-                    <div class="container">
-                        <label for="assessment"><b>Video Title:</b></label>
-                        <asp:TextBox ID="videotitle" runat="server"></asp:TextBox>
-
-                    </div>
-                    <div class="container">
-                        <label for="testname"><b>Video Details</b></label>
-                        <br />
-
-                        <label for="title"><b>URL</b></label>
-                        <asp:TextBox ID="urltextbox" runat="server"></asp:TextBox>
-
-                        <label for="title"><b>Descriptions</b></label><br />
-                         <textarea id="description" cols="70" name="S1" rows="2" runat="server"></textarea>
-                    </div>
-
-
-                    <div class="container">
-                        <button type="button" id="close1" onclick="closeAssessment2()">Confirm</button>
-                        <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
-
-                    </div>
-                    <div class="container">
-                        <button type="button" onclick="closeModal('id04')" class="cancelbtn">Cancel</button>
-                    </div>
+                <div class="imgcontainer">
+                    <h1>Add Video Details</h1>
+                    <span onclick="closeModal('id04')" class="close" title="Close Modal">&times;</span>
                 </div>
-            
-                       
+
+                <div class="container">
+                    <label for="assessment"><b>Video Title:</b></label>
+                    <asp:TextBox ID="videotitle" runat="server"></asp:TextBox>
+
+                </div>
+                <div class="container">
+                    <label for="testname"><b>Video Details</b></label>
+                    <br />
+
+                    <label for="title"><b>URL</b></label>
+                    <asp:TextBox ID="urltextbox" runat="server"></asp:TextBox>
+
+                    <label for="title"><b>Descriptions</b></label><br />
+                    <textarea id="description" cols="70" name="S1" rows="2" runat="server"></textarea>
+                </div>
+
+
+                <div class="container">
+                    <button type="button" id="close1" onclick="closeAssessment2()">Confirm</button>
+                    <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
+
+                </div>
+                <div class="container">
+                    <button type="button" onclick="closeModal('id04')" class="cancelbtn">Cancel</button>
+                </div>
+            </div>
+
+
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [videoTable] WHERE [vidId] = @original_vidId AND (([title] = @original_title) OR ([title] IS NULL AND @original_title IS NULL)) AND (([description] = @original_description) OR ([description] IS NULL AND @original_description IS NULL)) AND (([url] = @original_url) OR ([url] IS NULL AND @original_url IS NULL)) AND (([stageId] = @original_stageId) OR ([stageId] IS NULL AND @original_stageId IS NULL))" InsertCommand="INSERT INTO [videoTable] ([title], [description], [url], [stageId]) VALUES (@title, @description, @url, @stageId)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [videoTable]" UpdateCommand="UPDATE [videoTable] SET [title] = @title, [description] = @description, [url] = @url, [stageId] = @stageId WHERE [vidId] = @original_vidId AND (([title] = @original_title) OR ([title] IS NULL AND @original_title IS NULL)) AND (([description] = @original_description) OR ([description] IS NULL AND @original_description IS NULL)) AND (([url] = @original_url) OR ([url] IS NULL AND @original_url IS NULL)) AND (([stageId] = @original_stageId) OR ([stageId] IS NULL AND @original_stageId IS NULL))">
                 <DeleteParameters>
                     <asp:Parameter Name="original_vidId" Type="Int32" />
@@ -504,15 +528,20 @@
                     <asp:Parameter Name="original_stageId" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-                    </div>   
+        </div>
     </form>
     <script>
         var modal1 = document.getElementById('id01');
         var modal2 = document.getElementById('id02');
         var model4 = document.getElementById('id04');
+        var view_modal = document.getElementById('view_function');
 
         function showAdd() {
             modal1.style.display = "block";
+        }
+
+        function view() {
+            view_modal.style.display = "block";
         }
 
         function closeModal(modalId) {
@@ -528,13 +557,13 @@
         function closeAssessment() {
             var modal2 = document.getElementById("id02");
 
-                
-                modal2.style.display = "none";
+
+            modal2.style.display = "none";
         }
 
         function closeAssessment2() {
-            var modal4 = document.getElementById("id04");   1
-                modal4.style.display = "none";
+            var modal4 = document.getElementById("id04"); 1
+            modal4.style.display = "none";
 
         }
 
@@ -612,13 +641,12 @@
 
 
         //Add video
-
         function showAddVideoModel() {
             var modal4 = document.getElementById('id04');
             modal4.style.display = "block";
         }
 
-        
+
 
     </script>
 </body>
