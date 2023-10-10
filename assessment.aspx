@@ -55,7 +55,7 @@
         <br />
         Please select an option.<br />
         <br />
-        <asp:RadioButton ID="RadioButton1" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" GroupName="Ans" />
+        <asp:RadioButton ID="RadioButton1" runat="server" GroupName="Ans" />
         <br />
         <asp:RadioButton ID="RadioButton2" runat="server" GroupName="Ans"/>
         <br />
@@ -70,7 +70,7 @@
         <br />
         Please select an option.<br />
         <br />
-        <asp:RadioButton ID="RadioButton5" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" GroupName="Ans" />
+        <asp:RadioButton ID="RadioButton5" runat="server"  GroupName="Ans" />
         <br />
         <asp:RadioButton ID="RadioButton6" runat="server" GroupName="Ans"/>
         <br />
@@ -85,7 +85,7 @@
         <br />
         Please select an option.<br />
         <br />
-        <asp:RadioButton ID="RadioButton9" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" GroupName="Ans" />
+        <asp:RadioButton ID="RadioButton9" runat="server"  GroupName="Ans" />
         <br />
         <asp:RadioButton ID="RadioButton10" runat="server" GroupName="Ans"/>
         <br />
@@ -100,7 +100,7 @@
         <br />
         Please select an option.<br />
         <br />
-        <asp:RadioButton ID="RadioButton13" runat="server" OnCheckedChanged="RadioButton1_CheckedChanged" GroupName="Ans" />
+        <asp:RadioButton ID="RadioButton13" runat="server" GroupName="Ans" />
         <br />
         <asp:RadioButton ID="RadioButton14" runat="server" GroupName="Ans"/>
         <br />
