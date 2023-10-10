@@ -203,13 +203,6 @@
     <Compile Include="Admin_Dashboard.aspx.designer.cs">
       <DependentUpon>Admin_Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminEditVideo.aspx.cs">
-      <DependentUpon>AdminEditVideo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminEditVideo.aspx.designer.cs">
-      <DependentUpon>AdminEditVideo.aspx</DependentUpon>
-    </Compile>
     <Compile Include="adminRegistration.aspx.cs">
       <DependentUpon>adminRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
