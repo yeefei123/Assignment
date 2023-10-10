@@ -112,6 +112,8 @@
         <br />
         <br />
         <asp:Button ID="SubmitButton" runat="server" OnClick="SubmitButton_Click" Text="Submit" Width="316px" />
+        <br/>
+        <asp:Button ID="allCorrect" runat="server" Text="All Correct Debug Button" OnClick="allCorrect_Click" />
     </form>
 </body>
 </html>

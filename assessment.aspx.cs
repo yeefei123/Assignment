@@ -18,9 +18,37 @@ namespace Assignment
         {
             if (!IsPostBack)
             {
+                if (Session["userName"] != null)
+                {
+                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                    con.Open();
+                    string username = Session["userName"].ToString();
+                    string query = "SELECT userID FROM userTable WHERE userName = username";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    string tempUserID = "";
+
+                    while (dr.Read())
+                    {
+                        tempUserID = dr["userID"].ToString().Trim();
+                    }
+                    Session["userID"] = tempUserID;
+                    Response.Write("This is the user ID: " + Session["userID"]);
+                    Response.Write("  |  ");
+                    Response.Write("This is the username: " + username);
+                    Response.Write("  |  ");
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
                 if (Session["stageId"] != null && int.TryParse(Session["stageId"].ToString(), out int stageId))
                 {
                     getTitle(stageId);
+
+                    Response.Write("This is the stage ID for this assessment: " + Session["stageId"]);
                 }
                 else
                 {
@@ -92,6 +120,11 @@ namespace Assignment
         protected void SubmitButton_Click(object sender, EventArgs e)
         {
             
+        }
+
+        protected void allCorrect_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
