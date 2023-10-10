@@ -9,54 +9,28 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
         @media screen and (min-width:600px) {
-
-            .addvideoform {
-                margin-top: 5%;
-                margin-left: 34%;
-                background-color: #414a4c;
-                height: auto;
-                width: 400px;
-                padding: 3% 3% 3% 3%;
-                box-shadow: 1px 1px 2px rgba(0, 0, 0, 125);
-                border-radius: 5px;
+            body {
+                margin: 0;
+                padding: 0;
+                background-color:white;
+                height:100%;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             }
 
-            .container2 {
-                height: 100%;
-                width: 100%;
-                background-size: cover;
-                background-position: center;
-                position: inherit;
+            .videocontainer{
+                display:grid;
+                height:500px;
+                grid-template-columns: 2fr 1fr;
+                gap: 15px;
+                padding:5px 5%;
+                
+
             }
 
-            .formtitle {
-                font-size: 24px;
-                font-weight: 700;
-                margin-bottom: 25px;
-                color: #ffff;
-                text-transform: uppercase;
-                text-align: center;
-                font-family: 'Inter', sans-serif;
-            }
-
-            .videodetails {
-                color: white;
-                padding: 3px;
-            }
-
-            
-
-            .button {
-                background-color: #ffffff00;
-                color: #fff;
-                width: 8.5em;
-                height: 2.9em;
-                border: #3fb089 0.2rem solid;
-                border-radius: 11px;
-                text-align: right;
-                transition: all 0.6s ease;
-                margin-left: 35%;
-                margin-top: 5%;
+            .title{
+                margin-left:40%;
+                
+                
             }
 
             .button:hover {
@@ -64,103 +38,142 @@
                 cursor: pointer;
             }
 
-            .button svg {
-               width: 1.6em;
-               margin: -0.2em 0.8em 1em;
-               position: absolute;
-               display: flex;
-               transition: all 0.6s ease;
-            }
-
-            .button:hover svg {
-               transform: translateX(5px);
-            }
-
-            .text {
-                margin: 0 1.5em
-            }
-
-            #input {
-                font-family: 'Inter', sans-serif;
-                font-weight: 500;
-                font-size: .8vw;
-                background-color: black;
-                box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
-                border: none;
-                outline: none;
-                padding: 0.4vw;
-                max-width: 370px;
-                transition: .4s;
-                width: 500px;
+            .videocontainer .video-list .vid iframe{
+                width:50%;
+                height:100%;
                 border-radius: 5px;
-                color: white;
-                padding: 4px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                padding-left: 3%;
-}
+                display:flex;
+
             }
 
-            #input:hover {
-                box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
-                    
+            .auto-style1 {
+                width: 100%;
+            }
+            .auto-style2 {
+                width: 100%;
+
             }
 
-            #input:focus {
-                box-shadow: 0 0 0 .15vw skyblue;
+            .auto-style3 {
+                width: 33%;
             }
+
+            select {
+                padding: 10px 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                margin: 20px 0;
+            }
+
+           
+
+          }
+
+
+
+        
+
+        
+
 
     </style>
 </head>
 
 <body>
+<form id="form1" runat="server">
+<div class="title">
+                <asp:Label ID="tutorialvideolabel" runat="server" Text="Tutorial Videos" Font-Bold="True" Font-Size="30pt" ForeColor="Black"></asp:Label>
+                <br />
 
-        <div class="container2">
-            <div class="addvideoform">
-                <div class="formtitle">Add Video</div>
-                <form action="" method="post"">
-                    <div class="videodetails">
-                        <div>
-                            <label >Title</label> <br/>
-                            <input id="input"  type="text" required="required" placeholder="Enter title" /> <br/>
-                            <label >Description</label> <br>
-                            <textarea id="input" required="required" placeholder="Enter Description"></textarea><br/>
-                            <label >Programming Language</label>
-                            <br />
-                            <br/> 
-                            <input type="radio" name="language" required="required" />Python
-                            <input type="radio" name="language" required="required" />HTML
-                            <input type="radio" name="language" required="required" />Java 
-                            <br />
-                            <br />
-                            <label>Upload Video or URL</label>
-                            
-                            <br />
-                            <input id="input" type="file" accept=".mp4" />
-                            
-                            <br />
-                            <label>Insert URL</label>
-                            <br />
-                           
-                            <input id="input" type="url" placeholder="Insert URL"/>
-                        </div>
-                        </div>
-                    <div>
-                        <button class="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
-                            </svg>
-                            <div class="text">
-                              Add
-                            </div>
-                          </button>
-                    </div>
-                </form>
-            </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="Label1" runat="server" Text="Select stage ID:" Font-Size="15pt"></asp:Label>
+&nbsp;&nbsp;
+                <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+                <asp:DropDownList ID="DropDownList1" class="dropdownstageid" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="stageId" DataValueField="stageId" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                </asp:DropDownList>
+                <br />
+</div>
+         
+<div>
+    <div class="videocontainer">
+        <div class="video">
+            <iframe id="videoIframe1"   runat="server" allowfullscreen="true"></iframe>
+
+            <br />
+            <asp:Label ID="videoTitle1" class= "vidtitle" runat="server" Text="Label" Font-Bold="True"></asp:Label>
+
+            <br />
+            <asp:Label ID="des1" runat="server" Text="Label"></asp:Label>
+
+            <br />
+
+       </div>
+<div class="video-list">
+
+    <table class="auto-style1">
+        <tr>
+        <td class="auto-style3">
+        <iframe id="videoIframe2" runat="server" allowfullscreen="true"></iframe>
+        </td>
+        <td>
+        <asp:Label ID="videoTitle2" class= "vidtitle" runat="server" Font-Bold="True" ></asp:Label>
+        <br />
+        <asp:Label ID="des2" runat="server" Text="Label"></asp:Label>
+            <br />
+        </td>
+        </tr>
+        <tr>
+        <td class="auto-style3">
+        <iframe id="videoIframe3"  runat="server" allowfullscreen="true"></iframe>
+        </td>
+        <td>
+        <asp:Label ID="videoTitle3" class= "vidtitle" runat="server" Font-Bold="True"></asp:Label>
+        <br />
+        <asp:Label ID="des3" runat="server" Text="Label"></asp:Label>
+        </td>
+        </tr>
+        <tr>
+        <td class="auto-style3">
+        <iframe id="videoIframe4" runat="server" allowfullscreen="true"></iframe>
+        </td>
+        <td class="auto-style2">
+        <asp:Label ID="videoTitle4" class= "vidtitle" runat="server" Font-Bold="True"></asp:Label>
+        <br />
+        <asp:Label ID="des4" runat="server" Text="Label"></asp:Label>
+        </td>
+        </tr>
+
+   </table>
+
+        <br />
         </div>
-    <form id="form1" runat="server">
-        <div>
         </div>
-    </form>
+ 
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DISTINCT [stageId] FROM [videoTable]">
+</asp:SqlDataSource>
+  
+        <br />
+        <br />
+    <br />
+    <br />
+        <br />
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Edit Video" />
+    <br />
+    <br />
+    <br />
+
+
+  
+    
+    
+
+    
+    
+</div>
+</form>
 </body>
 </html>

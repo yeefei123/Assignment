@@ -16,8 +16,8 @@ namespace Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            
+            
                 if (Session["userName"] != null)
                 {
                     admin_uname.Text = "Welcome! " + Session["userName"].ToString();
@@ -52,15 +52,16 @@ namespace Assignment
                 int stageId = Convert.ToInt32(stageCmd.ExecuteScalar());
                 Session["stageId"] = stageId;
 
-                string assessmentQuery = "INSERT INTO assessmentTable (stageId, assessmentName, questionName, option1, option2, option3, option4) VALUES (@stageId, @assessmentName, @questionName, @option1, @option2, @option3, @option4)";
+                string assessmentQuery = "INSERT INTO assessmentTable (assessmentName, questionName, option1, option2, option3, option4, stageId) VALUES ( @assessmentName, @questionName, @option1, @option2, @option3, @option4, @stageId)";
                 SqlCommand assessmentCmd = new SqlCommand(assessmentQuery, con);
-                assessmentCmd.Parameters.AddWithValue("@stageId", stageId);
+                
                 assessmentCmd.Parameters.AddWithValue("@assessmentName", assessmentField.Text);
                 assessmentCmd.Parameters.AddWithValue("@questionName", titlebox.Text);
                 assessmentCmd.Parameters.AddWithValue("@option1", txtBox1.Text);
                 assessmentCmd.Parameters.AddWithValue("@option2", txtBox2.Text);
                 assessmentCmd.Parameters.AddWithValue("@option3", txtBox3.Text);
                 assessmentCmd.Parameters.AddWithValue("@option4", txtBox4.Text);
+                assessmentCmd.Parameters.AddWithValue("@stageId", stageId);
                 assessmentCmd.ExecuteNonQuery();
 
                 string url = urltextbox.Text;
