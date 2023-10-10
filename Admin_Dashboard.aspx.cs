@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Assignment
 {
@@ -16,24 +17,25 @@ namespace Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
-                if (Session["userName"] != null)
-                {
-                    admin_uname.Text = "Welcome! " + Session["userName"].ToString();
-                }
-                else
-                {
-                    Response.Redirect("Login.aspx");
-                }
+            if (Session["userName"] != null)
+            {
+                admin_uname.Text = "Welcome! " + Session["userName"].ToString();
             }
             else
             {
-                
+                Response.Redirect("Login.aspx");
             }
         }
+        
+        protected void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Request.Cookies.Clear();
 
-        protected void SubmitButton_Click(object sender, EventArgs e)
+            Response.Redirect("login.aspx");
+        }
+
+    protected void SubmitButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -150,6 +152,7 @@ namespace Assignment
 
     }
 }
+
 
 
       

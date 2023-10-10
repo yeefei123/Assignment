@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -38,23 +41,13 @@ namespace Assignment
             {
                 con.Open();
 
-
-
                 SqlCommand cmd = new SqlCommand("Select * from videoTable where stageId = @StageID", con);
                 cmd.Parameters.AddWithValue("@StageID", DropDownList1.SelectedValue);
-
-
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
-
-
                 int rowCount = dt.Rows.Count;
-
-
-
                 if (rowCount >= 4)
                 {
                     //make all the iframe and text visible
@@ -104,9 +97,6 @@ namespace Assignment
                 }
                 else if (rowCount == 2)
                 {
-
-
-
                     videoTitle1.Visible = videoIframe1.Visible = des1.Visible = true;
                     videoTitle2.Visible = videoIframe2.Visible = des2.Visible = true;
                     //retrieve video 

@@ -241,6 +241,11 @@
                 li a:hover {
                     background-color: #111;
                 }
+        .auto-style1 {
+            width: 100%;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
     </style>
 </head>
 <body>
@@ -256,6 +261,7 @@
                 <button class="level-button" type="button" onclick="showAdd()">Add</button>
                 <button class="level-button" type="button" onclick="">Modify</button>
                 <button class="level-button" type="button" onclick="showDelete()">Delete</button>
+                <asp:Button ID="logoutBtn" runat="server" OnClick="logoutBtn_Click" Text="Log Out" />
             </div>
 
             <div id="id03" class="modal" style="background-color: #f1f1f1; display: none; width: 400px; height: 500px;">

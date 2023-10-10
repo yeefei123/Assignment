@@ -160,8 +160,13 @@
                 <div id="video-button" onclick="window.location.href='User_video_page.aspx'">Learning Videos</div>
                 <div id="assessment-button" onclick="window.location.href='assessment.aspx'">Assessment</div>
                 <div id="exit-button" onclick="window.location.href='Login.aspx'">Exit</div>
-
             </div>
+
+            <!-- this is the debug winning button! if you finish the stage complete function rmb to come here and delete it !!!  -->
+            <div id="win-container">
+                <div style="border:1px" id="win-button" onclick="passGame()">Win Game</div>
+            </div>
+
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [stageTable] WHERE [stageId] = @original_stageId AND (([codeName] = @original_codeName) OR ([codeName] IS NULL AND @original_codeName IS NULL)) AND (([URL] = @original_URL) OR ([URL] IS NULL AND @original_URL IS NULL)) AND (([note] = @original_note) OR ([note] IS NULL AND @original_note IS NULL)) AND (([exercise] = @original_exercise) OR ([exercise] IS NULL AND @original_exercise IS NULL)) AND (([assessment] = @original_assessment) OR ([assessment] IS NULL AND @original_assessment IS NULL)) AND (([progressID] = @original_progressID) OR ([progressID] IS NULL AND @original_progressID IS NULL))" InsertCommand="INSERT INTO [stageTable] ([codeName], [URL], [note], [exercise], [assessment], [progressID]) VALUES (@codeName, @URL, @note, @exercise, @assessment, @progressID)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [stageTable]" UpdateCommand="UPDATE [stageTable] SET [codeName] = @codeName, [URL] = @URL, [note] = @note, [exercise] = @exercise, [assessment] = @assessment, [progressID] = @progressID WHERE [stageId] = @original_stageId AND (([codeName] = @original_codeName) OR ([codeName] IS NULL AND @original_codeName IS NULL)) AND (([URL] = @original_URL) OR ([URL] IS NULL AND @original_URL IS NULL)) AND (([note] = @original_note) OR ([note] IS NULL AND @original_note IS NULL)) AND (([exercise] = @original_exercise) OR ([exercise] IS NULL AND @original_exercise IS NULL)) AND (([assessment] = @original_assessment) OR ([assessment] IS NULL AND @original_assessment IS NULL)) AND (([progressID] = @original_progressID) OR ([progressID] IS NULL AND @original_progressID IS NULL))">
                 <DeleteParameters>
                     <asp:Parameter Name="original_stageId" Type="Int32" />
@@ -207,6 +212,7 @@
                 </div>
             </div>
             <button type="button" id="restart-button">Restart</button>
+            <a href="Stage.aspx"><button style="display:none" type="button" id="win-back-button">Back to Stage</button></a>
         </div>
     </form>
 
@@ -224,6 +230,8 @@
         const exitButton = document.getElementById('exit-button');
         const words = document.getElementById('words');
         const buttonsContainer = document.getElementById('buttons-container');
+        const winContainer = document.getElementById('win-container');
+        const backToStageBtn = document.getElementById('win-back-button');
 
         function jump() {
             if (!isJumping && !isGameOver && gameStarted) {
@@ -376,6 +384,10 @@
 
         function passGame() {
             alert('Congratulations! You have passed the game!');
+            backToStageBtn.style.display = 'block';
+            isGameOver = true;
+            isJumping = false;
+            console.log('win game');
         }
 
 
@@ -450,6 +462,8 @@
                     gameStarted = true;
                     words.style.display = 'none';
                     buttonsContainer.style.display = 'none';
+                    backToStageBtn.style.display = 'none';
+                    winContainer.style.display = 'block';
                     createObstacle();
                     createRandomAlphabet(); // Add this line
                 } else if (!isGameOver && gameStarted) {
