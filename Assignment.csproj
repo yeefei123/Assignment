@@ -100,7 +100,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminEditVideo.aspx" />
     <Content Include="Admin_Dashboard.aspx" />
     <Content Include="adminRegistration.aspx" />
     <Content Include="Admin_video_page.aspx" />
@@ -197,13 +196,6 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminEditVideo.aspx.cs">
-      <DependentUpon>AdminEditVideo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminEditVideo.aspx.designer.cs">
-      <DependentUpon>AdminEditVideo.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin_Dashboard.aspx.cs">
       <DependentUpon>Admin_Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
