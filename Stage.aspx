@@ -2,13 +2,9 @@
 
 <!DOCTYPE html>
 <html>
-<script runat="server">
-
-</script>
-
 
 <head>
-    <title>T-Rex Game - Stage Selection</title>
+<title>T-Rex Game - Stage Selection</title>
     <style>
         body {
             margin: 0;

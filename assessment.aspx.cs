@@ -124,7 +124,10 @@ namespace Assignment
 
         protected void allCorrect_Click(object sender, EventArgs e)
         {
-
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+            bool assessmentStatus = true;
+            string query = "";
         }
     }
 }

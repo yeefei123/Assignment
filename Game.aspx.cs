@@ -29,7 +29,24 @@ namespace Assignment
                 {
                     Response.Redirect("Stage.aspx");
                 }
+                string tempUserID = Session["userID"].ToString().Trim();
+                int IntSessionUserID = int.Parse(tempUserID);
+                Response.Write("This is the user ID: " + IntSessionUserID);
+                Response.Write(" | ");
+                Response.Write("This is the stage ID for this assessment: " + stageId);
 
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                con.Open();
+
+                string query = "INSERT INTO historyTable(userID, stageId, noteStatus, videoStatus, tutorialStatus, stageStatus, assessmentStatus, dateCompleted) " +
+                               "VALUES (@UserID, @StageID, 0, 0, 0, 0, 0, NULL)";
+
+                SqlCommand cmd1 = new SqlCommand(query, con);
+                cmd1.Parameters.AddWithValue("@UserID", IntSessionUserID);
+                cmd1.Parameters.AddWithValue("@StageID", stageId);
+                cmd1.ExecuteNonQuery();
+
+                con.Close();
             }
         }
 

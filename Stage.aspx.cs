@@ -23,6 +23,22 @@ namespace Assignment
                 if (Session["userName"] != null)
                 {
                     showName.Text = Session["userName"].ToString();
+                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                    con.Open();
+                    string username = Session["userName"].ToString();
+                    string query = "SELECT userID FROM userTable WHERE userName = username";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    string tempUserID = "";
+
+                    while (dr.Read())
+                    {
+                        tempUserID = dr["userID"].ToString().Trim();
+                    }
+                    Session["userID"] = tempUserID;
+                    int IntSessionUserID = int.Parse(tempUserID);
+
                 }
                 else
                 {
@@ -71,6 +87,7 @@ namespace Assignment
         protected void selectStage(int selectedStageId)
         {
             Response.Redirect($"Game.aspx?selectedStage={selectedStageId}");
+            
         }
 
 
