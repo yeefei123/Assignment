@@ -16,8 +16,8 @@ namespace Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            
+            
                 if (Session["userName"] != null)
                 {
                     admin_uname.Text = "Welcome! " + Session["userName"].ToString();
@@ -27,11 +27,8 @@ namespace Assignment
                     Response.Redirect("Login.aspx");
                 }
             }
-            else
-            {
-                Response.Redirect("Login.aspx");
-            }
-        }
+            
+        
 
         protected void SubmitButton_Click(object sender, EventArgs e)
         {

@@ -28,7 +28,10 @@ namespace Assignment
             con.Open();
             if (!IsPostBack)
             {
-
+                videoTitle4.Visible = videoIframe4.Visible = des4.Visible = false;
+                videoTitle3.Visible = videoIframe3.Visible = des3.Visible = false;
+                videoTitle2.Visible = videoIframe2.Visible = des2.Visible = false;
+                videoTitle1.Visible = videoIframe1.Visible = des1.Visible = false;
 
 
                 SqlDataAdapter da = new SqlDataAdapter("Select * from videoTable where stageId = '" + DropDownList1 + "'", con);
@@ -75,6 +78,8 @@ namespace Assignment
                     //retrieve video 
                     videoTitle1.Text = dt.Rows[0][1].ToString();
                     videoIframe1.Attributes["src"] = dt.Rows[0][3].ToString();
+                    videoIframe1.Attributes["title"] = dt.Rows[0][1].ToString();
+                    videoIframe1.Attributes["alt"] = dt.Rows[0][1].ToString();
                     des1.Text = dt.Rows[0][2].ToString();
                     videoTitle2.Text = dt.Rows[1][1].ToString();
                     videoIframe2.Attributes["src"] = dt.Rows[1][3].ToString();
@@ -140,6 +145,12 @@ namespace Assignment
             }
         }
 
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminEditVideo.aspx");
+            Session["stageId"] = DropDownList1.SelectedValue;
+        }
     }
 }
 
